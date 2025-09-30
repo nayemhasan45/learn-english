@@ -21,6 +21,16 @@
         body {
             font-family: "Sora", sans-serif;
         }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Keep FAQ title visible below sticky header */
+        #faq {
+            scroll-margin-top: 100px;
+        }
+        #learn {
+            scroll-margin-top: 120px;
+        }
     </style>
 </head>
 
@@ -38,11 +48,11 @@
 
             <!-- navbar button  -->
             <div class="nav_button">
-                <button class="btn text-[#422AD5] border rounded p-2 px-4 border-indigo-600">
+                <button id="faqBtn" class="btn text-[#422AD5] border rounded p-2 px-4 border-indigo-600">
                     <i class="fa-solid fa-circle-question"></i>
                     FAQ
                 </button>
-                <button class="btn text-[#422AD5] border rounded p-2 px-4 border-indigo-600">
+                <button id="learnBtn" class="btn text-[#422AD5] border rounded p-2 px-4 border-indigo-600">
                     <i class="fa-solid fa-book-open"></i>
                     Learn
                 </button>
@@ -81,7 +91,7 @@
         </section>
 
         <!-- learn Vocabularies -->
-        <section class="w-11/12 mx-auto mb-28">
+        <section id="learn" class="w-11/12 mx-auto mb-28">
 
             <!-- Vocabularies button  -->
             <div class="voc_btn text-center">
@@ -110,7 +120,7 @@
         </section>
 
         <!-- FAQ section -->
-        <section class="w-11/12 mx-auto my-28">
+        <section id="faq" class="w-11/12 mx-auto my-28">
 
             <!-- faq title  -->
             <div class="faq_title text-center mb-14">
