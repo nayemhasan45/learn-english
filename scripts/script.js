@@ -112,12 +112,12 @@ loadData();
 const displayAllBtn = (allData) => {
     const voc_button_container = document.getElementById('voc_btn_container');
     if (!voc_button_container) return;
-    voc_button_container.classList.add('flex', 'gap-4', 'justify-center', 'my-7');
+    voc_button_container.classList.add('flex', 'flex-wrap', 'gap-2', 'md:gap-4', 'justify-center', 'my-7');
     allData.forEach(data => {
         const div = document.createElement('div');
         div.innerHTML = `
-            <button onclick="loadDataByLevelId(${data.level_no})" class="btn btn-outline btn-primary lesson-btn" data-level="${data.level_no}">
-                <i class="fa-solid fa-book-open"></i>  Lesson - ${data.level_no}
+            <button onclick="loadDataByLevelId(${data.level_no})" class="btn btn-outline btn-primary lesson-btn text-xs md:text-sm px-1 md:px-4 py-1 md:py-2" data-level="${data.level_no}">
+                <i class="fa-solid fa-book-open text-xs md:text-sm"></i>  Lesson - ${data.level_no}
             </button>
         `;
         voc_button_container.appendChild(div);
@@ -167,7 +167,7 @@ const displayDataByLevelId = (data) => {
     voc_container.innerHTML = '';
 
     // Add styling and hide text
-    voc_container.classList.add('grid', 'gap-5', 'grid-cols-3', 'p-5');
+    voc_container.classList.add('grid', 'gap-5', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'p-5');
     voc_container_text.classList.add('hidden');
 
     // Hide error container when data is found
