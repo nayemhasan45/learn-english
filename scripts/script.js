@@ -5,14 +5,14 @@ const isValidEmail = (email) => {
 }
 
 //handle loading show
-const showLoader=()=>{
+const showLoader = () => {
     document.getElementById('loader').classList.remove('invisible');
     document.getElementById('voc_container').classList.add('invisible');
 
 }
 
 //handle loading hide
-const hideLoader=()=>{
+const hideLoader = () => {
     document.getElementById('loader').classList.add('invisible');
     document.getElementById('voc_container').classList.remove('invisible');
 }
@@ -133,7 +133,7 @@ const updateActiveLesson = (levelNo) => {
         btn.classList.remove('btn-primary');
         btn.classList.add('btn-outline');
     });
-    
+
     // Add active class to clicked button
     const activeButton = document.querySelector(`[data-level="${levelNo}"]`);
     if (activeButton) {
@@ -162,24 +162,23 @@ const loadDataByLevelId = async (id) => {
 const displayDataByLevelId = (data) => {
     const voc_container = document.getElementById('voc_content');
     const voc_container_text = document.getElementById('voc_content_text');
-    
+
     // Clear previous data first
     voc_container.innerHTML = '';
-    
+
     // Add styling and hide text
-    voc_container.classList.add('grid','gap-5','grid-cols-3','p-5');
+    voc_container.classList.add('grid', 'gap-5', 'grid-cols-3', 'p-5');
     voc_container_text.classList.add('hidden');
-    
+
     // Hide error container when data is found
     const voc_container_error = document.getElementById('voc_content_error');
     if (voc_container_error) {
         voc_container_error.classList.add('hidden');
     }
-    
+
     if (data.length > 0) {
         const sixData = data.slice(0, 6);
         sixData.forEach(data => {
-            console.log(data);
             const div = document.createElement('div');
             div.innerHTML = `
                 <div class="card bg-base-100  shadow-sm">
@@ -189,7 +188,7 @@ const displayDataByLevelId = (data) => {
                         <p>pronunciation : ${data.pronunciation}</p>
                         <div class="card-actions  flex justify-between">
                             <div>
-                                <button onclick="loadDataByWordId(${data.id})" class="btn bg-[#e8f4ff]">
+                                <button onclick="loadDataByWordId(${data.id}); document.getElementById('My_modal').showModal()" class="btn bg-[#e8f4ff]">
                                     <i class="fa-solid fa-circle-info"></i>
                                 </button>
                             </div>
@@ -212,15 +211,52 @@ const displayDataByLevelId = (data) => {
     }
 }
 // load data when view word details is clicked 
-const loadDataByWordId=(id)=>{
+const loadDataByWordId = (id) => {
     showLoader();
     fetch(`https://openapi.programming-hero.com/api/word/${id}`)
-    .then(res=> res.json())
-    .then(data=>displayByWordId(data.data))
+        .then(res => res.json())
+        .then(data => displayByWordId(data.data))
 }
 
 // display data by word id 
-const displayByWordId=(data)=>{
-console.log(data)
-hideLoader();
+const displayByWordId = (data) => {
+    console.log(data)
+    const voc_modal = document.getElementById('My_modal');
+
+    // Clear previous modal content
+    voc_modal.innerHTML = '';
+
+    // Check synonyms length
+    let synonymsHtml = '';
+    if (data.synonyms && data.synonyms.length > 0) {
+        console.log('synonyms found:', data.synonyms);
+        synonymsHtml = data.synonyms.map(synonym => `
+                <p class="text-lg  p-2 m-2 bg-[#edf7ff] rounded"> ${synonym}</p>
+            `).join('');
+    } else {
+        console.log('no synonyms data');
+        synonymsHtml = '<p class="text-gray-500">No synonyms available</p>';
+    }
+
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="modal-box">
+           <div class="border-2 border-[#edf7ff] rounded p-4">
+             <h3 class="text-2xl font-bold">${data.word} / (${data.pronunciation})</h3>
+            <p class="py-2 text-xl font-bold">Meaning: <span class="font-normal">${data.meaning}</span></p>
+            <p class="text-xl font-bold">Example: <span class="font-normal">${data.sentence}</span></p>
+            <div class="py-2">
+                <p class="text-xl font-bold">সমার্থক শব্দ গুলো:</p>
+                <div class="mt-2 flex justify-center">${synonymsHtml}</div>
+            </div>
+           </div>
+            <div class="mt-4">
+                <form method="dialog">
+                    <button class="btn btn-primary">Complete Learning</button>
+                </form>
+            </div>
+        </div>
+    `;
+    voc_modal.appendChild(div);
+    hideLoader();
 }
