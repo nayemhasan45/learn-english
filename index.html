@@ -21,13 +21,16 @@
         body {
             font-family: "Sora", sans-serif;
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         /* Keep FAQ title visible below sticky header */
         #faq {
             scroll-margin-top: 100px;
         }
+
         #learn {
             scroll-margin-top: 120px;
         }
@@ -36,7 +39,7 @@
 
 <body>
     <!-- header section start  -->
-    <header id="header" class="sticky top-0 z-50 border-b-1 bg-[#ececec] border-[#C6BDBD] hidden">
+    <header id="header" class="sticky top-0 z-50 border-b-1 bg-[#ececec] border-[#C6BDBD] ">
         <nav class="w-11/12 mx-auto flex items-center justify-between py-5 ">
 
             <!-- navbar logo -->
@@ -78,7 +81,7 @@
                     Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
                 <div class="flex flex-col gap-4 w-1/2 py-5">
                     <input id="bannerEmail" type="email" placeholder="Enter your Email" class="input" required />
-                    <input id="bannerPassword" type="password" placeholder="Password" class="input" required/>
+                    <input id="bannerPassword" type="password" placeholder="Password" class="input" required />
                     <button id="bannerButton" class="btn btn-primary w-1/3">Get Started</button>
                 </div>
             </div>
@@ -91,36 +94,52 @@
         </section>
 
         <!-- learn Vocabularies -->
-        <section id="learn" class="w-11/12 mx-auto mb-28 hidden">
+        <section id="learn" class="w-11/12 mx-auto mb-28 ">
 
             <!-- Vocabularies button  -->
             <div class="voc_btn text-center">
-                <h1 class="text-4xl pb-4 font-extrabold mb-14"><span class="text-[#00bcff]">Let's</span> Learn
+                <h1 class="text-4xl font-extrabold "><span class="text-[#00bcff]">Let's</span> Learn
                     Vocabularies
                 </h1>
 
                 <!-- dynamic button  -->
-                <div>
+                <div id="voc_btn_container">
 
                 </div>
             </div>
 
+            <!-- loader section  -->
+            <div id="loader" class="text-center invisible ">
+                <span class="loading loading-dots loading-xl "></span>
+            </div>
+
+
             <!-- Vocabularies content  -->
-            <div>
-                <div class="bg-[#ececec] py-16 text-center rounded-lg">
+            <div id="voc_container" class="bg-[#ececec] pt-12 pb-16 rounded-lg    ">
+
+                <div id="voc_content_text" class="text-center ">
                     <p>আপনি এখনো কোন Lesson Select করেন ন</p>
                     <h1>একটি Lesson Select করুন।</h1>
                 </div>
 
                 <!-- dynamic content load  -->
-                <div>
+                <div id="voc_content">
 
+                </div>
+
+                <!-- show when no content found  -->
+                <div id="voc_content_error" class="text-center hidden">
+                    <div class="flex  justify-center">
+                        <img src="assets/alert-error.png" alt="no data">
+                    </div>
+                    <p>এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+                    <h1 class="text-2xl font-bold">নেক্সট Lesson এ যান</h1>
                 </div>
             </div>
         </section>
 
         <!-- FAQ section -->
-        <section id="faq" class="w-11/12 mx-auto my-28 hidden">
+        <section id="faq" class="w-11/12 mx-auto my-28 ">
 
             <!-- faq title  -->
             <div class="faq_title text-center mb-14">
@@ -164,7 +183,7 @@
     </main>
     <!-- footer section  -->
 
-    <footer id="footer" class="border-t-3 border-[#FFEBEB] hidden">
+    <footer id="footer" class="border-t-3 border-[#FFEBEB] ">
         <div class="w-11/12 mx-auto flex justify-between items-center py-20">
             <!-- footer content  -->
             <div>
@@ -179,11 +198,17 @@
 
             <!-- footer link  -->
             <div>
-                <p>Follow us</p>
+                <p>Follow me</p>
                 <div class="flex items-center justify-center gap-4">
-                    <img src="assets/fb-thumb.png" alt="facebook">
-                    <img src="assets/instagram-thumb.png" alt="instagram">
-                    <img src="assets/youtube-thumb.png" alt="youtube">
+                    <a href="https://www.facebook.com/nayemhasan450" target="_blank">
+                        <img src="assets/fb-thumb.png" alt="facebook">
+                    </a>
+                    <a href="https://github.com/nayemhasan45" target="_blank">
+                        <img src="assets/github-thumb.png" alt="github">
+                    </a>
+                    <a href="https://www.linkedin.com/in/al-amin-hossain-nayem-1a3574279/" target="_blank">
+                        <i class="fa-brands fa-linkedin text-4xl rounded"></i>
+                    </a>
                 </div>
             </div>
         </div>
